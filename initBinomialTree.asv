@@ -1,0 +1,25 @@
+function [ tree ] = initBinomialTree( S, sigma, T, nInterval )
+%INITBINOMIALTREE Summary of this function goes here
+%   init price binomial tree by a matrix like this
+%   Price(m,n) = S*u^(n-m)*d^(m-1) where m<=n
+%   Price(m,n) = S*d^(n-1)
+%   1 us uus uuus ...  
+%     ds uds duus
+%        dds duds
+%            ddds
+%
+    %% init parameters
+    dt = T/nInterval;
+    u = exp(sigma*dt^0.5);
+    d = 1/u;
+   
+    %% init origin price binomial tree
+    tree = S*ones(nInterval+1, nInterval+1);
+    for i = 2:(nInterval+1)
+        tree(1:(i-1),i) = tree(1:(i-1),i-1)*u;
+        tree(i:nInterval+1,i) = tree(i-1,i-1)*d;
+    end;
+    
+    tree = S*ones
+end
+
