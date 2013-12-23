@@ -10,7 +10,7 @@ function [ price ] = AmericanPutOptionsBT( K, S, sigma, T, r, q, nInterval )
     p = (a-d)/(u-d);
     discountFac = exp(-r*dt);
     
-    priceTree = initBinomialTree(S, u, d, nInterval);
+    priceTree = initBinomialTree(S, nInterval, u);
     
     %% price
     profit = max(K - priceTree, 0);
